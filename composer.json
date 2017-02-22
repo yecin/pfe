@@ -34,7 +34,8 @@
         "patchwork/jsqueeze": "~2.0",
         "symfony/cache": "^3.2.2",
         "symfony/http-kernel": "^3.2.2",
-        "symfony/framework-bundle":"^3.2.2" 
+        "symfony/framework-bundle":"^3.2.2",
+        "vich/uploader-bundle": "^1.4" 
     },
     "repositories": [
         {
