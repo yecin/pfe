@@ -1,0 +1,234 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Liste des débarras
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block body %}  
+	<!-- Mobiles -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+			<div class="select-box">
+				<div class="clearfix"></div>
+			</div>
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+			  <li><a href="{{ path('bo_occasion_home') }}">Accueil</a></li>
+			  <!--li><a href="categories.html">Categories</a></li-->
+			  <li class="active">{{ app.request.get('category')|upper }} </li>
+			</ol>
+			<div class="ads-grid">
+				<div class="side-bar col-md-3">
+					<div class="search-hotel">
+					<h3 class="sear-head">Recherche</h3>
+					<form>
+						<input type="text" value="Nom du produit..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PNom du produit...';}" required="">
+						<input type="submit" value=" ">
+					</form>
+				</div>
+				
+				<div class="range">
+					<h3 class="sear-head">Prix</h3>
+							<ul class="dropdown-menu6">
+								<li>
+									                
+									<div id="slider-range"></div>							
+										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+									</li>			
+							</ul>
+							<!---->
+							<script type="text/javascript" src="js/jquery-ui.js"></script>
+							<script type='text/javascript'>//<![CDATA[ 
+							$(window).load(function(){
+							 $( "#slider-range" ).slider({
+										range: true,
+										min: 0,
+										max: 9000,
+										values: [ 50, 6000 ],
+										slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+										}
+							 });
+							$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+							});//]]>  
+
+							</script>
+							
+				</div>
+				<div class="brand-select">
+					<h3 class="sear-head">Marque</h3>
+					  <select class="selectpicker" data-live-search="true">
+					  <option data-tokens="All">Tous</option>
+					  <option data-tokens="Asus">Asus</option>
+					  <option data-tokens="Black Berry">Black Berry</option>
+					  <option data-tokens="HTC">HTC</option>
+					  <option data-tokens="Intex">Intex</option>
+					  <option data-tokens="iPhone">iPhone</option>
+					  <option data-tokens="Karbonn">Karbonn</option>
+					  <option data-tokens="Lava">Lava</option>
+					  <option data-tokens="Lenovo">Lenovo</option>
+					  <option data-tokens="LG">LG</option>
+					  <option data-tokens="Mi">Mi</option>
+					  <option data-tokens="Micromax">Micromax</option>
+					  <option data-tokens="Motorola">Motorola</option>
+					  <option data-tokens="Nokia">Nokia</option>
+					  <option data-tokens="Samsung">Samsung</option>
+					  <option data-tokens="Sony">Sony</option>
+					  <option data-tokens="Other Mobiles">Other Mobiles</option>
+					</select>
+				</div>
+                                    
+				</div>
+				<div class="ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+												<div id="container">
+								<div class="view-controls-list" id="viewcontrols">
+									<label>vue :</label>
+									<a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+									<a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+								</div>
+								<div class="sort">
+								   <div class="sort-by">
+										<label>Trié par : </label>
+										<select>
+                                                                                        <option value="">Plus Récent1</option>
+                                                                                        <option value="">Prix : de - vers +</option>
+                                                                                        <option value="">Prix : de + vers -</option>
+										</select>
+									   </div>
+									 </div>
+								<div class="clearfix"></div>
+							<ul class="list">
+                                                            {% for ad in list_ad %}
+								<a href="show/{{ ad.id }}">
+									<li>
+									<img 
+                                                                                src="{#{ asset(ad.image.webPath) }#}"
+                                                                                alt="{#{ ad.image.alt }#}"
+                                                                                title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">{{ ad.title }}</h5>
+									<span class="adprice">{{ ad.price }} DT</span>
+									<p class="catpath">{{ app.request.get('category') }} » {{ ad.brand }}</p>
+									</section>
+									<section class="list-right">
+									<span class="date">{%if "now"|date('d/m/Y')  == ad.datecreate|date('d/m/Y') %}Aujourdhui, {{ ad.datecreate|date("H:i") }}
+                                                                        {%else%} {{ ad.datecreate|date("d/m/Y  H:i") }} {% endif %} </span>
+									<span class="cityname">{{ ad.customer.governate.name }}</span>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+                                                        {% else %}
+                                                            <li>Pas d'annonces trouvées.</li>            
+                                                        {% endfor %}
+							</ul>
+						</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+						 <div>
+												<div id="container">
+								<div class="view-controls-list" id="viewcontrols">
+									<label>Vue :</label>
+									<a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+									<a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+								</div>
+								<div class="sort">
+								   <div class="sort-by">
+										<label>Trier par : </label>
+										<select>
+                                                                                        <option value="">Plus Récent2</option>
+                                                                                        <option value="">Prix : de - vers +</option>
+                                                                                        <option value="">Prix : de + vers -</option>
+										</select>
+									   </div>
+									 </div>
+								<div class="clearfix"></div>
+							<ul class="list">
+								<a href="single.html">
+									<li>
+									<img src="images/m1.jpg" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
+									<span class="adprice">$290</span>
+									<p class="catpath">Mobile Phones » Brand</p>
+									</section>
+									<section class="list-right">
+									<span class="date">Today, 17:55</span>
+									<span class="cityname">City name</span>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+							</ul>
+						</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+						  <div>
+												<div id="container">
+								<div class="view-controls-list" id="viewcontrols">
+									<label>Vue :</label>
+									<a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+									<a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+								</div>
+								<div class="sort">
+								   <div class="sort-by">
+										<label>Trier par : </label>
+										<select>
+                                                                                        <option value="">Plus récent3</option>
+                                                                                        <option value="">Prix : de - vers +</option>
+                                                                                        <option value="">Prix : de + vers -</option>
+										</select>
+									   </div>
+									 </div>
+								<div class="clearfix"></div>
+							<ul class="list">
+								<a href="single.html">
+									<li>
+									<img src="images/m1.jpg" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
+									<span class="adprice">$290</span>
+									<p class="catpath">Mobile Phones » Brand</p>
+									</section>
+									<section class="list-right">
+									<span class="date">Today, 17:55</span>
+									<span class="cityname">City name</span>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+							</ul>
+						</div>
+							</div>
+						</div>
+						<ul class="pagination pagination-sm">
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>	
+	</div>
+	<!-- // Mobiles -->  
+
+{% endblock %}

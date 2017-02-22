@@ -1,0 +1,70 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Application Mobile
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+
+
+<!-- Terms of use -->
+<div class="mobilaapp main-grid-border">
+        <div class="container">
+                <div class="app">
+                        <div class="col-md-5 app-left mpl">
+                                <h2>L'application BonneOccasion mobile sur votre smartphone!</h2>
+                                <p>Acheter, Revendre et échanger vos articles d'occasion rapidement et facilement directement depuis votre téléphone.</p>
+                                <div class="app-devices">
+                                        <h5>Obtenir l'application de</h5>
+                                        <a href="#">
+                                            <img src="{{ asset( 'bundles/booccasion/images/1.png' ) }}" alt="google play">
+                                        </a>
+                                        <a href="#">
+                                            <img src="{{ asset( 'bundles/booccasion/images/2.png' ) }}" alt="app store">
+                                        </a>
+                                        <div class="clearfix"> </div>
+                                </div>
+                        </div>
+                        <div class="col-md-7 app-image">
+                                <img src="{{ asset( 'bundles/booccasion/images/mob2.png' ) }}" alt="">
+                        </div>
+                        <div class="clearfix"></div>
+                </div>
+        </div>
+        <div class="app-bottom-grids text-center">
+                <div class="container">
+                        <div class="col-md-3 app-bottom-grid">
+                                <i class="fa fa-search"></i>
+                                <h3>Rechercher</h3>
+                                <p>Vous êtes à la recherche d’un article d'occasion ?</p>
+                        </div>
+                        <div class="col-md-3 app-bottom-grid">
+                                <i class="fa fa-bell-o"></i>
+                                <h3>Notifications</h3>
+                                <p> Les nouvelles annonces parues depuis la mise en place des alertes.</p>
+                        </div>
+                        <div class="col-md-3 app-bottom-grid">
+                                <i class="fa fa-plus"></i>
+                                <h3>Publier</h3>
+                                <p>Déposer gratuitement vos petites annonces dans plusieurs catégories</p>
+                        </div>
+                        <div class="col-md-3 app-bottom-grid">
+                                <i class="fa fa-question"></i>
+                                <h3>Répondre</h3>
+                                <p>Poser les bonnes questions au annonceur </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                </div>
+        </div>	
+</div>
+<!-- // Terms of use -->
+    
+
+{% endblock %}

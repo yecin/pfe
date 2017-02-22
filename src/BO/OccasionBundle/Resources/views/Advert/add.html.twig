@@ -1,0 +1,106 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} 
+    Ajouter une annonce
+{% endblock %}
+
+
+{% block body %}
+
+    
+<!-- Submit Ad -->
+<div class="submit-ad main-grid-border">
+        <div class="container">
+                <h2 class="head">Je publie une annonce - objet d'occasion</h2>
+                <div class="post-ad-form">
+                        {{ form_start(form) }}
+                                {{ form_errors(form) }}
+                                {{ form_label(form.category, 'Catégorie') }}
+                                {{ form_widget(form.category) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.title, { 'attr' : {'class' : 'phone'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.content, 'Description', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.content, { 'attr' : {'class' : 'mess'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.price, { 'attr' : {'class' : 'phone'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.brand, 'Marque', {'label_attr': {'class': 'name'}}) }}
+                                {{ form_widget( form.brand, { 'attr' : {'class' : 'name', 'placeholder':'Marque(s)'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.state, 'Etat', {'label_attr': {'class': 'name'}}) }}
+                                {{ form_widget( form.state ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.published, 'Publier', {'label_attr': {'class': 'name'}}) }}
+                                {{ form_widget( form.published ) }}
+                                <div class="clearfix"></div>
+                                
+                        <div class="upload-ad-photos">
+                                {#{ form_label(form.picture, 'Ajoutez vos photos', {'label_attr': {'class': ''} }) }#}
+                                <!--div class="photos-upload-view">
+                                    {#{ form_start(upload) }#}
+                                    <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                                    {#{ form_widget( form.picture, { 'attr' : {'class' : 'name'} } ) }#}
+                                    {#{ form_end(upload) }#}
+                                    </form>
+                                </div-->
+                        <!--
+                        <label>Ajoutez vos photos d'annonce :</label>	
+                                    <div class="photos-upload-view">
+                                        <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                                        <div>
+                                                <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                                                <div id="filedrag">or drop files here</div>
+                                        </div>
+                                        <div id="submitbutton">
+                                                <button type="submit">Upload Files</button>
+                                        </div>
+                                        </form>
+                                        <div id="messages">
+                                        <p>Status Messages</p>
+                                        </div>
+                                    </div>
+                                <div class="clearfix"></div>
+                        -->!!!
+                        </div>
+                                <div class="personal-details">
+                                    {{ form_label(form.customer.lnamecust, 'Nom', {'label_attr': {'class': 'phone'}}) }}
+                                    {{ form_widget( form.customer.lnamecust, { 'attr' : {'class' : 'name'}} ) }}
+                                        <div class="clearfix"></div>
+                                    {{ form_label(form.customer.fnamecust, 'Prénom', {'label_attr': {'class': 'phone'}}) }}
+                                    {{ form_widget( form.customer.fnamecust, { 'attr' : {'class' : 'name'}} ) }}
+                                        <div class="clearfix"></div>
+                                        {{ form_label(form.customer.governate, 'Region') }}
+                                        {{ form_widget(form.customer.governate) }}                                        
+                                        <div class="clearfix"></div>
+                                    {{ form_label(form.customer.telcust, 'Téléphone') }}
+                                    {{ form_widget( form.customer.telcust, { 'attr' : {'class' : 'phone'}} ) }}
+                                    <div class="clearfix"></div>
+                                    {{ form_label(form.showphone, 'Afficher le numéro', {'label_attr': {'class': 'name'}}) }}
+                                    {{ form_widget( form.showphone ) }}
+                                    <div class="clearfix"></div>
+                                    {#{ form_label(form.account.email, 'E-mail') }#}
+                                    {#{ form_widget( form.account.email, { 'attr' : {'class' : 'email'}} ) }#}
+                                        <div class="clearfix"></div>
+                                        <p class="post-terms">En cliquant sur  <strong> "Publier mon annonce"</strong>  j'accepte la charte du bon annonceur.</p>
+                                    {{ form_widget( form.save, { 'attr' : {'value' : 'Publier mon annonce'}} ) }}
+                                        <!--input type="submit" value="Publier mon annonce"-->
+                                <div class="clearfix"></div>
+                                {{ form_rest(form) }}
+                                {{dump(form)}}
+                                {{ form_end(form) }}
+                                </div>
+                </div>
+        </div>	
+</div>
+<!-- // Submit Ad -->   
+{% endblock %}
+{% block footer %}    
+        
+
+{% endblock %}

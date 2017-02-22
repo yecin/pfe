@@ -1,0 +1,5 @@
+bo_occasion:
+    resource: "@BOOccasionBundle/Resources/config/routing.yml"
+    prefix:   /occasion
+
+

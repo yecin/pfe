@@ -1,0 +1,278 @@
+<?php
+
+namespace BO\OccasionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Publish
+ *
+ * @ORM\Table(name="publish")
+ * @ORM\Entity(repositoryClass="BO\OccasionBundle\Repository\publishRepository")
+ */
+class Publish
+{
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="showphone", type="boolean")
+     */
+    private $showphone;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbview", type="smallint")
+     */
+    private $nbview;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="alert", type="smallint")
+     */
+    private $alert;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datecreate", type="datetime")
+     */
+    private $datecreate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateedit", type="datetime")
+     */
+    private $dateedit;
+
+    /**
+     * @var \boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published=true;
+    
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set showphone
+     *
+     * @param boolean $showphone
+     *
+     * @return publish
+     */
+    public function setShowphone($showphone)
+    {
+        $this->showphone = $showphone;
+
+        return $this;
+    }
+
+    /**
+     * Get showphone
+     *
+     * @return bool
+     */
+    public function getShowphone()
+    {
+        return $this->showphone;
+    }
+
+    /**
+     * Set nbview
+     *
+     * @param integer $nbview
+     *
+     * @return publish
+     */
+    public function setNbview($nbview)
+    {
+        $this->nbview = $nbview;
+
+        return $this;
+    }
+
+    /**
+     * Get nbview
+     *
+     * @return int
+     */
+    public function getNbview()
+    {
+        return $this->nbview;
+    }
+
+    /**
+     * Set alert
+     *
+     * @param integer $alert
+     *
+     * @return publish
+     */
+    public function setAlert($alert)
+    {
+        $this->alert = $alert;
+
+        return $this;
+    }
+
+    /**
+     * Get alert
+     *
+     * @return int
+     */
+    public function getAlert()
+    {
+        return $this->alert;
+    }
+
+
+    public function __construct()
+    {
+        $this->datecreate = new \Datetime();
+        $this->dateedit = new \Datetime();;
+    }
+    /**
+     * Get datecreate
+     *
+     * @return \DateTime
+     */
+    public function getDatecreate()
+    {
+        return $this->datecreate;
+    }
+
+
+    /**
+     * Get dateedit
+     *
+     * @return \DateTime
+     */
+    public function getDateedit()
+    {
+        return $this->dateedit;
+    }
+    
+    
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return publish
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set datecreate
+     *
+     * @param \DateTime $datecreate
+     *
+     * @return Publish
+     */
+    public function setDatecreate($datecreate)
+    {
+        $this->datecreate = $datecreate;
+
+        return $this;
+    }
+
+    /**
+     * Set dateedit
+     *
+     * @param \DateTime $dateedit
+     *
+     * @return Publish
+     */
+    public function setDateedit($dateedit)
+    {
+        $this->dateedit = $dateedit;
+
+        return $this;
+    }
+
+    /**
+     * Set advert
+     *
+     * @param \BO\OccasionBundle\Entity\Advert $advert
+     *
+     * @return Publish
+     */
+    public function setAdvert(\BO\OccasionBundle\Entity\Advert $advert)
+    {
+        $this->advert = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Get advert
+     *
+     * @return \BO\OccasionBundle\Entity\Advert
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \BO\OccasionBundle\Entity\Customer $customer
+     *
+     * @return Publish
+     */
+    public function setCustomer(\BO\OccasionBundle\Entity\Customer $customer)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \BO\OccasionBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+}

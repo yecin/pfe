@@ -1,0 +1,96 @@
+{# src/bo/occasionbundle/Resources/views/layout.html.twig #}
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+   {{ parent() }} | 
+{% endblock %}
+
+{% block header %}
+        <div class="main-banner banner text-center">
+            <div class="container">
+                <h1>Vendre, Acheter ou Echanger
+                    <span class="segment-heading"> sur </span> BonneOccasion</h1>
+                <p>La manière la plus facile pour la vente, l'achat et l'échange des
+                    biens d'occasion</p>
+                <a href="{{ path('bo_occasion_add') }}">Publier gratuitement une annonce</a>
+            </div>
+        </div>
+    
+{% endblock %}
+
+
+{% block body %}
+
+    {% block bodyoccasion %}
+        
+    {% endblock %}    
+{% endblock %} 
+{% block footer %}    
+        
+        <div class="footer-top">
+            <div class="container">
+                    <div class="foo-grids">
+                            <div class="col-md-3 footer-grid">
+                                    <h4 class="footer-head">Qui sommes nous</h4>
+                                    <p>Le site est créer dans le cadre d'un projet de fin d'étude de mastere commerce électronique.</p>
+                                    <p>Ecole superieure de commerce de Sfax, Tunisie.</p>
+                            </div>
+                            <div class="col-md-3 footer-grid">
+                                    <h4 class="footer-head">Aide</h4>
+                                    <ul>
+                                            <li><a href="{{ path('bo_occasion_howitworks') }}">Comment ça fonctionne</a></li>						
+                                            <li><a href="{{ path('bo_occasion_mobileapp') }}">Mobile</a></li>
+                                            <li><a href="{{ path('bo_occasion_feedback') }}">Votre avis</a></li>
+                                            <li><a href="{{ path('bo_occasion_contact') }}">Contact</a></li>
+                                    </ul>
+                            </div>
+                            <div class="col-md-3 footer-grid">
+                                    <h4 class="footer-head">Information</h4>
+                                    <ul>
+                                            <li><a href="{{ path('bo_occasion_error') }}">Plan du site</a></li>	
+                                            <li><a href="{{ path('bo_occasion_terms') }}">Conditions d'utilisation</a></li>
+                                            <li><a href="popular-search.html">Recherche fréquente</a></li>	
+                                            <li><a href="{{ path('bo_occasion_privacy') }}">Politique de confidentialité</a></li>	
+                                    </ul>
+                            </div>
+                            <div class="col-md-3 footer-grid">
+                                    <h4 class="footer-head">Nous contacter</h4>
+                                    <span class="hq">Notre siège</span>
+                                    <address>
+                                            <ul class="location">
+                                                    <li><span class="glyphicon glyphicon-map-marker"></span></li>
+                                                    <li>CENTRE D'ASSISTANCE</li>
+                                                    <div class="clearfix"></div>
+                                            </ul>	
+                                            <ul class="location">
+                                                    <li><span class="glyphicon glyphicon-earphone"></span></li>
+                                                    <li>+216 ********</li>
+                                                    <div class="clearfix"></div>
+                                            </ul>	
+                                            <ul class="location">
+                                                    <li><span class="glyphicon glyphicon-envelope"></span></li>
+                                                    <li><a href="mailto:info@example.com">mail@example.com</a></li>
+                                                    <div class="clearfix"></div>
+                                            </ul>						
+                                    </address>
+                            </div>
+                            <div class="clearfix"></div>
+                    </div>						
+            </div>	
+	</div>	
+{% endblock %}
+{% block icon %}
+        <div class="footer-logo">
+                <a href="{{ path('bo_occasion_home') }}"><span>Bonne</span>Occasion</a>
+        </div>
+        <div class="footer-social-icons">
+                <ul>
+                        <li><a class="facebook" href="#"><span>Facebook</span></a></li>
+                        <li><a class="twitter" href="#"><span>Twitter</span></a></li>
+                        <li><a class="flickr" href="#"><span>Flickr</span></a></li>
+                        <li><a class="googleplus" href="#"><span>Google+</span></a></li>
+                        <li><a class="dribbble" href="#"><span>Dribbble</span></a></li>
+                </ul>
+        </div>
+{% endblock %}
+        

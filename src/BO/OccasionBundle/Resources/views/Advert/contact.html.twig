@@ -1,0 +1,152 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Contact
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+	<!-- Terms of use -->
+	<div class="contact main-grid-border">
+		<div class="container">
+			<h2 class="head text-center">Contacter nous</h2>
+			<section id="hire">    
+				<form id="filldetails">
+					  <div class="field name-box">
+							<input type="text" id="name" placeholder="vous etes qui?"/>
+							<label for="name">Prénom</label>
+							<span class="ss-icon">check</span>
+					  </div>
+					  
+					  <div class="field email-box">
+							<input type="text" id="email" placeholder="example@email.com"/>
+							<label for="email">E-mail</label>
+							<span class="ss-icon">check</span>
+					  </div>
+					  
+					  <div class="field ad-ID">
+							<input type="text" id="adid" placeholder="Ad ID"/>
+							<label for="email">Ad ID</label>
+							<span class="ss-icon">check</span>
+					  </div>
+					  
+					  <div class="field phonenum-box">
+							<input type="text" id="phone" placeholder="Numéro du téléphone"/>
+							<label for="email">Téléphone</label>
+							<span class="ss-icon">check</span>
+					  </div>
+
+					  <div class="field msg-box">
+							<textarea id="msg" rows="4" placeholder="Décrivez précisément votre bien, en indiquant son état, ses caractéristiques, ainsi que toute autre information importante pour l'acheteur."/></textarea>
+							<label for="msg">Texte d'annonce</label>
+							<span class="ss-icon">check</span>
+					  </div>
+				 
+			  </form>
+			<div class="upload">
+						 <h3 class="tlt">Ajoutez une pièce jointe</h3>
+						<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<div id="drop">
+				<a>Ajoutez une photo</a>
+				<input type="file" name="upl" multiple />
+			</div>
+
+			<ul class="show">
+				<!-- The file uploads will be shown here -->
+			</ul>
+		</form>	
+		<div class="clear"></div>
+		<form class="submit">
+		<input class="button" type="submit" value="Envoyer" />
+		</form>
+		<!-- JavaScript Includes 
+		<script src="js/jquery.knob.js"></script>
+
+		<!-- jQuery File Upload Dependencies 
+		<script src="js/jquery.ui.widget.js"></script>
+		<script src="js/jquery.fileupload.js"></script>
+		-->
+		<!-- Our main JS file 
+		<script src="js/script.js"></script>-->
+		</div>
+			</section>
+			<script>
+				  $('textarea').blur(function () {
+				$('#hire textarea').each(function () {
+					$this = $(this);
+					if (this.value != '') {
+						$this.addClass('focused');
+						$('textarea + label + span').css({ 'opacity': 1 });
+					} else {
+						$this.removeClass('focused');
+						$('textarea + label + span').css({ 'opacity': 0 });
+					}
+				});
+			});
+			$('#hire .field:first-child input').blur(function () {
+				$('#hire .field:first-child input').each(function () {
+					$this = $(this);
+					if (this.value != '') {
+						$this.addClass('focused');
+						$('.field:first-child input + label + span').css({ 'opacity': 1 });
+					} else {
+						$this.removeClass('focused');
+						$('.field:first-child input + label + span').css({ 'opacity': 0 });
+					}
+				});
+			});
+			$('#hire .field:nth-child(2) input').blur(function () {
+				$('#hire .field:nth-child(2) input').each(function () {
+					$this = $(this);
+					if (this.value != '') {
+						$this.addClass('focused');
+						$('.field:nth-child(2) input + label + span').css({ 'opacity': 1 });
+					} else {
+						$this.removeClass('focused');
+						$('.field:nth-child(2) input + label + span').css({ 'opacity': 0 });
+					}
+				});
+			});
+			$('#hire .field:nth-child(3) input').blur(function () {
+				$('#hire .field:nth-child(3) input').each(function () {
+					$this = $(this);
+					if (this.value != '') {
+						$this.addClass('focused');
+						$('.field:nth-child(3) input + label + span').css({ 'opacity': 1 });
+					} else {
+						$this.removeClass('focused');
+						$('.field:nth-child(3) input + label + span').css({ 'opacity': 0 });
+					}
+				});
+			});
+			$('#hire .field:nth-child(4) input').blur(function () {
+				$('#hire .field:nth-child(4) input').each(function () {
+					$this = $(this);
+					if (this.value != '') {
+						$this.addClass('focused');
+						$('.field:nth-child(4) input + label + span').css({ 'opacity': 1 });
+					} else {
+						$this.removeClass('focused');
+						$('.field:nth-child(4) input + label + span').css({ 'opacity': 0 });
+					}
+				});
+			});
+		  //@ sourceURL=pen.js
+		</script>    
+		<script>
+	  if (document.location.search.match(/type=embed/gi)) {
+		window.parent.postMessage("resize", "*");
+	  }
+	</script>
+		</div>	
+	</div>
+	<!-- // Terms of use -->    
+    
+
+{% endblock %}

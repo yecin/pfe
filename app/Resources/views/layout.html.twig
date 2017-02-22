@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+    {% block title %}
+        Bonne Occasion    
+    {% endblock %}
+    </title>
+    {% block biblio %}
+                {% block stylesheets %}
+                        {% stylesheets 
+                            filter='?cssrewrite, ?scssphp'
+                            'bundles/booccasion/css/*.css' %}
+                            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+                        {% endstylesheets %}
+                {% endblock %}   
+                <!--fonts-->
+                <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+                <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+                <!--//fonts-->
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                      var mySelect = $('#first-disabled2');
+
+                      $('#special').on('click', function () {
+                        mySelect.find('option:selected').prop('disabled', true);
+                        mySelect.selectpicker('refresh');
+                      });
+
+                      $('#special2').on('click', function () {
+                        mySelect.find('option:disabled').prop('disabled', false);
+                        mySelect.selectpicker('refresh');
+                      });
+
+                      $('#basic2').selectpicker({
+                        liveSearch: true,
+                        maxOptions: 1
+                      });
+                    });
+                </script>
+                {% block headerlayout %}
+                    <div class="header">
+                        <div class="container">
+                                    {#% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        Connecté en tant que {{ app.user.username }}
+                                        -
+                                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                                    {% else %}
+                                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                                    {% endif %#}                                 
+                            <div class="logo">
+                                <a href="{{ path('bo_occasion_home') }}"><span>Bonne</span>Occasion</a>
+                            </div>
+                            <div class="header-right">
+                                <a class="account" href="{{ path('bo_occasion_login') }}">Mon Compte</a>
+
+                            </div>
+                        </div>
+                    </div>    
+                {% endblock %}
+                {% block header %}
+
+                {% endblock %}
+                {% block javascript %}
+                        {% javascripts filter='?jsqueeze'
+                            'bundles/booccasion/js/*.js' %}
+                            <script type="text/javascript" src="{{ asset_url }}"></script>
+                        {% endjavascripts %}
+                {% endblock %}    
+            
+    {% endblock %}    
+</head>
+<body>
+    {% block bodyone %}    
+        
+        {% block body %}    
+
+        {% endblock %}
+    {% endblock %}    
+    
+    {% block footerone %}    
+    <footer>
+        {% block footer %}    
+
+        {% endblock %}
+        <div class="footer-bottom text-center">
+            {% block icon %}    
+
+            {% endblock %}
+            <div class="container">
+                <div class="copyrights">
+                    <p>© 2016 BonneOccasion. @yas | W3layouts
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>    
+    </footer>        
+
+        
+    {% endblock %}
+    
+</body>
+</html>

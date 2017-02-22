@@ -1,0 +1,30 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Erreur 404
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block body %}
+    
+	<!-- 404page of use -->
+        <div class="background404">
+                    <div class="title404 wrap404">
+                        <h1>Nous sommes désolés. Cette page est introuvable.</h1>
+                        <h2>Erreur 404!</h2>
+                    </div>
+                    <div class="wrap404">
+                        <div class="gray404">
+                            <a href="javascript:history.go(-1)" class="ag-3d_button404 orange404">Retour </a>
+                         </div>
+                    </div>
+        </div>
+	<!-- // 404page of use -->    
+
+{% endblock %}

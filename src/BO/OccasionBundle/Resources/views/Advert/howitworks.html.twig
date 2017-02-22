@@ -1,0 +1,61 @@
+{#% extends "BOOccasionBundle::layout.html.twig" %#}
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Comment ça fonctionne
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+
+
+
+	<!-- How it works -->
+		<div class="work-section">
+			<div class="container">
+				<h2 class="head">Comment ça fonctionne</h2>
+					<div class="work-section-head text-center">
+						<p>Rapide, facile et gratuit pour publier une annonce et vous trouverez ce que vous cherchez.</p>
+					</div>
+					<div class="work-section-grids text-center">
+						<div class="col-md-3 work-section-grid">
+							<i class="fa fa-pencil-square-o"></i>
+							<h4>Publier une annonce</h4>
+							<p>Pour publier une annonce éfficace, il suffit tout simplement de sélectionner la catégorie d'annonce à publier et de remplir chaque champ du formulaire. </p>
+							<span class="arrow1"><img src="{{ asset('bundles/occasion/images/arrow1.png') }}"  /></span>
+						</div>
+                                                
+						<div class="col-md-3 work-section-grid">
+							<i class="fa fa-eye"></i>
+							<h4>Trouver une annonce</h4>
+							<p>Vous pouvez faire apparaître les annonces de façon ciblée en choisissant la région, la catégorie et la recherche libre. </p>
+							<span class="arrow2"><img src="{{ asset('bundles/occasion/images/arrow2.png') }}"  /></span>
+						</div>
+						<div class="col-md-3 work-section-grid">
+							<i class="fa fa-phone"></i>
+							<h4>Contactez le vendeur</h4>
+							<p>Vous pouvez utiliser un formulaire dédié pour contacter l'annonceur du bien par messagerie privée ou son numéro de téléphone s'il est renseigné</p>
+							<span class="arrow1"><img src="{{ asset('bundles/occasion/images/arrow1.png') }}"  /></span>
+						</div>
+						<div class="col-md-3 work-section-grid">
+							<i class="fa fa-money"></i>
+							<h4>Effectuer des transactions</h4>
+							<p>L'annceur et le vendeur se mettent d'accord concernant le délai/mode de livraison et de paiement.</p>
+						</div>
+						<div class="clearfix"></div>
+						<a class="work" href="{{ path('bo_occasion_add') }}">Commencer maintenant</a>
+					</div>
+				</div>
+		</div>	
+		
+	<!-- // How it works -->
+
+
+{% endblock %}
+

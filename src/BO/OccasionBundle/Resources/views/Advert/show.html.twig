@@ -1,0 +1,102 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    débarras
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+
+
+	<!--single-page-->
+	<div class="single-page main-grid-border">
+		<div class="container">
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+				<li><a href="{{ path('bo_occasion_home') }}">Accueil</a></li>
+				<li><a href=" ../{{ad.category.name}} "> {{ad.category.name}} </a></li>
+				<li class="active">{{ ad.title|upper }}</li>
+			</ol>
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>{{ ad.title }}</h2>
+					<!--p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p-->
+					<div class="flexslider">
+						<ul class="slides">
+							<li data-thumb="images/ss1.jpg">
+								<img src="images/ss1.jpg" />
+							</li>
+							<li data-thumb="images/ss2.jpg">
+								<img src="images/ss2.jpg" />
+							</li>
+							<li data-thumb="images/ss3.jpg">
+								<img src="images/ss3.jpg" />
+							</li>
+						</ul>
+					</div>
+					<!-- FlexSlider -->
+					  <script defer src="js/jquery.flexslider.js"></script>
+					<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<!-- //FlexSlider -->
+					<div class="product-details">
+						<h4>Marque : <a href="#">{{ ad.brand }}</a></h4>
+						<h4>Vues : <strong>{{ ad.nbview }}</strong></h4>
+						<p><strong>Déscription</strong> : {{ ad.content }}.</p>
+					
+					</div>
+				</div>
+				<div class="col-md-5 product-details-grid">
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price">Prix</p>
+							<h3 class="rate"> {{ ad.price }} DT</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price">Etat</p>
+							<h4>{{ ad.state }}</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price">Type</p>
+							<h4> {{ad.category.name}}  </h4>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="interested text-center">
+						<h4>Intéresser par l'annonce?<small> Contacter l'annonceur!</small></h4>
+						<p><i class="glyphicon glyphicon-earphone"></i>{%if ad.showphone==1%} {{ad.customer.telcust}} {%else%} messagerie privée{%endif%}</p>
+					</div>
+						<div class="tips">
+						<h4>Conseils de sécurité pour les acheteurs.  Pour ne pas tomber dans le piège des fraudeurs</h4>
+							<ol>
+								<li><a href="#">Comment puis-je déceler la fraude?</a></li>
+								<li><a href="#">Rassemblez des informations sur l'objet</a></li>
+								<li><a href="#"> Enquêtez sur la valeur de l'objet</a></li>
+							</ol>
+						</div>
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--//single-page-->
+
+
+{% endblock %}
+

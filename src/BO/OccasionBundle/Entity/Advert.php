@@ -1,0 +1,471 @@
+<?php
+
+namespace BO\OccasionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Advert
+ *
+ * @ORM\Table(name="Advert")
+ * @ORM\Entity(repositoryClass="BO\OccasionBundle\Repository\AdvertRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Advert
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="BO\OccasionBundle\Entity\Category")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="BO\OccasionBundle\Entity\Customer",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $customer;    
+  
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="string", length=255)
+     */
+    private $content;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="decimal")
+     */
+    private $price;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="brand", type="string", length=255)
+     */
+    private $brand;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=255)
+     */
+    private $state;
+       
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="showphone", type="boolean")
+     */
+    private $showphone;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbview", type="smallint")
+     */
+    private $nbview=0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="alert", type="smallint", nullable=true)
+     */
+    private $alert;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datecreate", type="datetime")
+     */
+    private $datecreate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateedit", type="datetime", nullable=true)
+     */
+    private $dateedit;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="BO\OccasionBundle\Entity\Picture", mappedBy="advert", cascade={"persist", "remove"})
+     * @Assert\Valid()
+    */
+    private $picture;
+
+    /**
+     * @var \boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;    
+      
+    public function __construct()
+    {
+        $this->datecreate = new \DateTime('now');
+        $this->published=true;
+        $this->picture = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return int
+     */   
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return advert
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return advert
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return advert
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param string $brand
+     *
+     * @return Advert
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     *
+     * @return Advert
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set advert
+     *
+     * @param \BO\OccasionBundle\Entity\Advert $advert
+     *
+     * @return Advert
+     */
+    public function setAdvert(\BO\OccasionBundle\Entity\Advert $advert)
+    {
+        $this->advert = $advert;
+        return $this;
+    }
+
+    /**
+     * Get advert
+     *
+     * @return \BO\OccasionBundle\Entity\Advert
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \BO\OccasionBundle\Entity\Category $category
+     *
+     * @return Advert
+     */
+    public function setCategory(\BO\OccasionBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \BO\OccasionBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set showphone
+     *
+     * @param boolean $showphone
+     *
+     * @return Advert
+     */
+    public function setShowphone($showphone)
+    {
+        $this->showphone = $showphone;
+        return $this;
+    }
+
+    /**
+     * Get showphone
+     *
+     * @return boolean
+     */
+    public function getShowphone()
+    {
+        return $this->showphone;
+    }
+
+    public function setNbview($nbview)
+    {
+        $this->nbview = $nbview;
+        return $this;
+    }
+
+    /**
+     * Get nbview
+     *
+     * @return integer
+     */
+    public function getNbview()
+    {
+        return $this->nbview;
+    }
+
+    /**
+     * Set alert
+     *
+     * @param integer $alert
+     *
+     * @return Advert
+     */
+    public function setAlert($alert)
+    {
+        $this->alert = $alert;
+        return $this;
+    }
+
+    /**
+     * Get alert
+     *
+     * @return integer
+     */
+    public function getAlert()
+    {
+        return $this->alert;
+    }
+
+    /**
+     * Get datecreate
+     *
+     * @return \DateTime
+     */
+    public function getDatecreate()
+    {
+        return $this->datecreate;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setDateedit()
+    {
+        $this->setUpdatedAt(new \Datetime());
+        return $this;
+    }
+
+    /**
+     * Get dateedit
+     *
+     * @return \DateTime
+     */
+    public function getDateedit()
+    {
+        return $this->dateedit;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Advert
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \BO\OccasionBundle\Entity\Customer $customer
+     *
+     * @return Advert
+     */
+    public function setCustomer(\BO\OccasionBundle\Entity\Customer $customer)
+    {
+        $this->customer = $customer;
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \BO\OccasionBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+ 
+    public function addPicture(\BO\OccasionBundle\Entity\Picture $picture)
+    {
+        $this->picture[] = $picture;
+        $picture->setAdvert($this);
+        return $this;
+    }
+ 
+    public function removePicture(\BO\OccasionBundle\Entity\Picture $picture)
+    {
+        $this->picture->removeElement($picture);
+    }
+ 
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set datecreate
+     *
+     * @param \DateTime $datecreate
+     *
+     * @return Advert
+     */
+    public function setDatecreate($datecreate)
+    {
+        $this->datecreate = $datecreate;
+
+        return $this;
+    }
+}

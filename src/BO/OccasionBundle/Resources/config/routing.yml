@@ -1,0 +1,90 @@
+#bo_occasion_homepage:
+#    path:     /
+#    defaults: { _controller: BOOccasionBundle:Default:index }
+
+bo_occasion_home:
+    path:      /{page}
+    defaults:
+        _controller: BOOccasionBundle:Advert:index
+        page:        1
+    requirements:
+        page: \d*
+
+
+#bo_occasion_show:
+#    path:      /advert/{id}
+#    defaults:  { _controller: BOOccasionBundle:Advert:show }
+#    requirements:
+#        id: \d+
+
+bo_occasion_show:
+    path:      /category/show/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:show }
+    requirements:
+        id: \d+
+
+bo_occasion_add:
+    path:      /add
+    defaults:  { _controller: BOOccasionBundle:Advert:add }
+
+
+bo_occasion_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:edit }
+    requirements:
+        id: \d+
+
+
+bo_occasion_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:delete }
+    requirements:
+        id: \d+
+        
+bo_occasion_howitworks:
+    path:      /howitworks
+    defaults:  { _controller: BOOccasionBundle:Advert:howitworks }
+    
+        
+bo_occasion_contact:
+    path:      /contact
+    defaults:  { _controller: BOOccasionBundle:Advert:contact }
+    
+bo_occasion_terms:
+    path:      /terms
+    defaults:  { _controller: BOOccasionBundle:Advert:terms }
+    
+bo_occasion_mobileapp:
+    path:      /mobileapp
+    defaults:  { _controller: BOOccasionBundle:Advert:mobileapp }
+    
+bo_occasion_privacy:
+    path:      /privacy
+    defaults:  { _controller: BOOccasionBundle:Advert:privacy }
+    
+bo_occasion_error:
+    path:      /error
+    defaults:  { _controller: BOOccasionBundle:Advert:error }
+    
+bo_occasion_feedback:
+    path:      /feedback
+    defaults:  { _controller: BOOccasionBundle:Advert:feedback }
+    
+bo_occasion_login:
+    path:      /login
+    defaults:  { _controller: BOOccasionBundle:Advert:login }
+    
+bo_occasion_register:
+    path:      /register
+    defaults:  { _controller: BOOccasionBundle:Advert:register }
+    
+bo_occasion_category:
+    path:      /category/{category}
+    defaults:  { _controller: BOOccasionBundle:Advert:category }    
+    
+bo_occasion_removeadd:
+    path:      /removeadd/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:removeadd }
+    requirements:
+        id: \d+
+    
