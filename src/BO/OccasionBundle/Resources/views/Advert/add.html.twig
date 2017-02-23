@@ -39,7 +39,8 @@
                                 <div class="clearfix"></div>
                                 
                         <div class="upload-ad-photos">
-                                {#{ form_label(form.picture, 'Ajoutez vos photos', {'label_attr': {'class': ''} }) }#}
+                                {{ form_label(form.advertimage, 'Ajoutez vos photos', {'label_attr': {'class': ''} }) }}
+                                {{ form_widget(form.advertimage) }}
                                 <!--div class="photos-upload-view">
                                     {#{ form_start(upload) }#}
                                     <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
