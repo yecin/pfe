@@ -77,6 +77,7 @@ class AdvertType extends AbstractType
                         'attr' => array('class' => 'clearfix'),*/
                         )                        
                     )
+                ->add('advertimage', FileType::class, array('label' => "Ajouter vos photos"))
         ;
     }
     
