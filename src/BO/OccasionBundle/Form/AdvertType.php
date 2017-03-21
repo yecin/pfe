@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use BO\UserBundle\Form\UserType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 //*****************************************************************
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -13,10 +14,18 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 //*******************************************************************
 
 class AdvertType extends AbstractType
 {
+//    // ****pour controler la ajout customer****
+//    private $isGranted;
+//    public function __construct($isGranted)
+//    {
+//        $this->isGranted = $isGranted;
+//    }
+//    //****************************************
     /**
      * {@inheritdoc}
      */
@@ -26,17 +35,20 @@ class AdvertType extends AbstractType
                 ->add('title',       TextType::class
                         , array(
                         'label'=>'Titre',
+                        'required'=> false,    
                         'attr' => array(
                         'placeholder' => 'Titre',
                         )))
                 ->add('content',     TextareaType::class                       
                         , array(
                         'label'=>'Description',
+                        'required'=> false,
                         'attr' => array(
                         'placeholder' => 'Description...',
                         )))
-                ->add('price',       IntegerType::class
+                ->add('price',       NumberType::class
                         , array(
+                        'scale' => 3,
                         'label'=>'Prix',
                         ))
                 ->add('brand',       TextType::class
@@ -45,38 +57,39 @@ class AdvertType extends AbstractType
                 ->add('showphone',   CheckboxType::class
                         , array(
                         'required' => false,
-                        'label'=>'Afficher le numéro',
+                        'label'=>'oui',
                         ))
-                /*->add('picture',     PictureType::class
-                        , array(
-                        'data_class' => null,
-                        'label'=>'Photos',
-                        ))*/
-                ->add('published',   CheckboxType::class
+                ->add('published',  CheckboxType::class
                         , array(
                             'required' => false,
-                            'label'=>'Publier',
+                            'label'=>'oui',
                             ))
                 ->add('category',    EntityType::class, array(
                             'class'        => 'BOOccasionBundle:Category',
+                            'label'        => 'Catégorie',
                             'choice_label' => 'longname',
                             'multiple'     => false,
                             'expanded'     => false,
                       ))
-                 
-                ->add('customer',    CustomerType::class)
-                ->add('state',     TextType::class                       
+                ->add('user',        UserType::class)
+                ->add('state',       TextType::class                       
                         , array(
-                        'label'=>'State',
+                        'label'=>'Etat',
                         'attr' => array(
-                        'placeholder' => 'Etat...',
+                        'placeholder' => 'Etat de débarrs...',
                         )))
-                ->add('save',        SubmitType::class
+                ->add('submit',        SubmitType::class
                         , array(
-                        'label'=>'Publier mon annonce'/*/,
-                        'attr' => array('class' => 'clearfix'),*/
+                        'label'=>'Publier mon annonce'
                         )                        
                     )
+                ->add('advertimage', FileType::class
+                        , array('label' => "Ajoutez vos photos"
+                            ))
+//                ->add('redirect_url', 'hidden', array(
+//                        'mapped' => false,
+//                        'data'=>$this->getRequest()->server->get('HTTP_REFERER'),
+//                    ))
         ;
     }
     

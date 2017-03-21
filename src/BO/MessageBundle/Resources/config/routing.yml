@@ -1,0 +1,3 @@
+bo_message_homepage:
+    path:     /
+    defaults: { _controller: BOMessageBundle:Default:index }

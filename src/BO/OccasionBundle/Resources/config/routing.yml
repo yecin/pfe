@@ -34,6 +34,12 @@ bo_occasion_edit:
     requirements:
         id: \d+
 
+bo_occasion_update:
+    path:      /update/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:update }
+    requirements:
+        id: \d+
+
 
 bo_occasion_delete:
     path:      /delete/{id}
@@ -43,7 +49,7 @@ bo_occasion_delete:
         
 bo_occasion_howitworks:
     path:      /howitworks
-    defaults:  { _controller: BOOccasionBundle:Advert:howitworks }
+    defaults:  { _controller: BOOccasionBundle:Static:howitworks }
     
         
 bo_occasion_contact:
@@ -52,27 +58,27 @@ bo_occasion_contact:
     
 bo_occasion_terms:
     path:      /terms
-    defaults:  { _controller: BOOccasionBundle:Advert:terms }
+    defaults:  { _controller: BOOccasionBundle:Static:terms }
     
 bo_occasion_mobileapp:
     path:      /mobileapp
-    defaults:  { _controller: BOOccasionBundle:Advert:mobileapp }
+    defaults:  { _controller: BOOccasionBundle:Static:mobileapp }
     
 bo_occasion_privacy:
     path:      /privacy
-    defaults:  { _controller: BOOccasionBundle:Advert:privacy }
+    defaults:  { _controller: BOOccasionBundle:Static:privacy }
     
 bo_occasion_error:
     path:      /error
-    defaults:  { _controller: BOOccasionBundle:Advert:error }
+    defaults:  { _controller: BOOccasionBundle:Static:error }
     
 bo_occasion_feedback:
     path:      /feedback
-    defaults:  { _controller: BOOccasionBundle:Advert:feedback }
+    defaults:  { _controller: BOOccasionBundle:Static:feedback }
     
-bo_occasion_login:
-    path:      /login
-    defaults:  { _controller: BOOccasionBundle:Advert:login }
+#bo_occasion_login:
+#    path:      /login
+#    defaults:  { _controller: BOOccasionBundle:Advert:login }
     
 bo_occasion_register:
     path:      /register
@@ -87,4 +93,29 @@ bo_occasion_removeadd:
     defaults:  { _controller: BOOccasionBundle:Advert:removeadd }
     requirements:
         id: \d+
+bo_occasion_mylist:
+    path:      /mylist/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:mylist }     
     
+#*****
+bo_occasion_readmsg:
+    path:      /readmsg/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:readmsg }
+    requirements:
+        id: \d+
+
+bo_occasion_addmsg:
+    path:      /addmsg
+    defaults:  { _controller: BOOccasionBundle:Advert:addmsg     }
+
+bo_occasion_deletemsg:
+    path:      /deletemsg/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:deletemsg }
+    requirements:
+        id: \d+
+
+bo_occasion_listmsg:
+    path:      /listmsg/{id}
+    defaults:  { _controller: BOOccasionBundle:Advert:listmsg }
+    requirements:
+        id: \d+        

@@ -1,0 +1,40 @@
+<div class="submit-ad main-grid-border">
+    <div class="container">
+        <div class="post-ad-form">
+            <div class="personal-details">
+                    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.username) }}
+                        {{ form_label(form.username, 'Pseudo', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.username, { 'attr' : {'class' : 'name'}}) }}
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.email) }}
+                        {{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.email, { 'attr' : {'class' : 'input-xlarge'}}) }}
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.plainPassword.first) }}
+                        {{ form_label(form.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.plainPassword.first, { 'attr' : {'class' : 'lock'}}) }}
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.plainPassword.second) }}
+                        {{ form_label(form.plainPassword.second, 'Confirmer Mot de passe', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.plainPassword.second, { 'attr' : {'class' : 'lock'}}) }}
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.governate) }}
+                        {{ form_label(form.governate, 'Gouvernorat', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.governate) }}
+                        <div class="clearfix"></div>
+                        {{ form_errors(form.tel) }}
+                        {{ form_label(form.governate,'Téléphone', {'label_attr': {'class': 'phone'}}) }}
+                        {{ form_widget(form.tel) }}
+                        <div class="clearfix"></div>
+                        {{ form_rest(form) }}
+                        <div>
+                            <input type="submit" value="Enregistrer" class="account header-right" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>                   

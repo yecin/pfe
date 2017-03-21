@@ -16,7 +16,7 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
         $repository = $this
         ->getDoctrine()
         ->getManager()
-        ->getRepository('OCPlatformBundle:Category')
+        ->getRepository('BOOccasionBundle:Category')
       ;
       return $repository->findOneByX($name);
     }

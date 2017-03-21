@@ -1,0 +1,34 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+      {{ parent() }} modifier  
+    {{ advert.title }}
+{% endblock %}
+
+{% block header %}
+    
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+
+        <div class="container">
+                <div class="alert alert-warning" role="alert">
+                <strong>{{ app.user.username|upper }}</strong> Vous éditez une annonce déjà existante, merci de ne pas changer
+                    l'esprit générale de l'annonce déjà publiée.
+                </div>
+        </div>
+
+          {% include "BOOccasionBundle:Advert:form.html.twig" %}
+
+        <p>
+            <a href="{{ path('bo_occasion_show', {'id': advert.id}) }}" class="btn btn-default">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+              Retour à l'annonce
+            </a>
+        </p>
+
+
+{% endblock %}
+

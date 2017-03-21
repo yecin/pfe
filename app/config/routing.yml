@@ -1,5 +1,51 @@
+bo_message:
+    resource: "@BOMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#******************************************************************************#
+bo_user:
+    resource: "@BOUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bo_occasion:
     resource: "@BOOccasionBundle/Resources/config/routing.yml"
     prefix:   /occasion
 
+#app:
+#    resource: "@AppBundle/Controller/"
+#    type:     annotation
+    
+#************************************************************#
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /messagerie
+#**************************************************************#    
+login:
+    pattern:   /login
+    defaults:  { _controller: ComparadiseUserBundle:Security:login }
+# 
+login_check:
+    pattern:   /login_check
+# 
+logout:
+    pattern:   /logout

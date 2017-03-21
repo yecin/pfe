@@ -1,56 +1,49 @@
-{# src/BO/OccasionBundle/Resources/views/Advert/form.html.twig #}
-
-
-
-<div class="well">
-  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-
-    {# Les erreurs générales du formulaire. #}
-    {{ form_errors(form) }}
-
-    <div class="form-group">
-      {# Génération du label. #}
-      {{ form_label(form.category, "Catégorie ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-      {# Affichage des erreurs pour ce champ précis. #}
-      {{ form_errors(form.category) }}
-      <div class="col-sm-4">
-        {# Génération de l'input. #}
-        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-      </div>
+    <div class="post-ad-form">
+            {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    {{ form_label(form.category, 'Catégorie') }}
+                    {{ form_widget(form.category) }}
+                    <div class="clearfix"></div>
+                    {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'phone'}}) }}
+                    {{ form_widget( form.title, { 'attr' : {'class' : 'phone'}} ) }}
+                    <div class="clearfix"></div>
+                    {{ form_label(form.content, 'Description', {'label_attr': {'class': 'phone'}}) }}
+                    {{ form_widget( form.content, { 'attr' : {'class' : 'mess'}} ) }}
+                    <div class="clearfix"></div>
+                    {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'phone'}}) }}
+                    {{ form_widget( form.price, { 'attr' : {'class' : 'phone'}} ) }}
+                    <div class="clearfix"></div>
+                    {{ form_label(form.brand, 'Marque', {'label_attr': {'class': 'name'}}) }}
+                    {{ form_widget( form.brand, { 'attr' : {'class' : 'name', 'placeholder':'Marque(s)'}} ) }}
+                    <div class="clearfix"></div>
+                    {{ form_label(form.state, 'Etat', {'label_attr': {'class': 'name'}}) }}
+                    {{ form_widget( form.state ) }}
+                    <div class="clearfix"></div>
+                    <label for="checkbox" class="col-sm-2 control-label">Publier l'annonce</label>             
+                        {{ form_widget( form.published, { 'attr' : {'class' : 'checkbox-inline'}} ) }}
+                    <div class="col-sm-4 jlkdfj1">
+                            <p class="help-block">Décocher pour sauvegarder</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!------------------------->
+                    <div class="upload-ad-photos">
+                            {{ form_label(form.advertimage, 'Ajouter une image', {'label_attr': {'class': ''} }) }}
+                            {{ form_widget(form.advertimage) }}
+                    </div>
+                    <!------------------------->
+                    <div class="form-group">
+                            <label for="checkbox" class="col-sm-2 control-label">Afficher numéro</label>
+                            <div class="col-sm-8">
+                                    <div class="checkbox-inline">{{ form_widget( form.showphone ) }}</div>
+                            </div>
+                    </div>
+                    <!------------------------->
+                    <div class="personal-details">
+                        <div class="clearfix"></div>
+                        {{ form_widget( form.submit, { 'attr' : {'value' : 'Publier'}} ) }}
+                    <div class="clearfix"></div>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                    
     </div>
-
-    {# Idem pour un autre champ. #}
-    <div class="form-group">
-      {{ form_label(form.title, "Titre de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-      {{ form_errors(form.title) }}
-      <div class="col-sm-4">
-        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-      </div>
-    </div>
-
-    <div class="form-group">
-      {{ form_label(form.content, "Contenu de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-      {{ form_errors(form.content) }}
-      <div class="col-sm-4">
-        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-      </div>
-    </div>      
-
-  {# Génération du label + error + widget pour un champ #}
-  {{ form_row(form.date) }}
-  {{ form_row(form.name) }}
-  {{ form_row(form.firstname) }}
-  {{ form_row(form.published) }}
-  {{ form_row(form.email) }}
-
-  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-  {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-  {# Génération automatique des champs pas encore écrits.
-     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-     et tous les champs cachés (type « hidden »). #}
-  {{ form_rest(form) }}
-  
-  {# Fermeture de la balise <form> du formulaire HTML #}
-  {{ form_end(form) }}
-</div>
