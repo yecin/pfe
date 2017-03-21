@@ -1,7 +1,7 @@
 {% extends "BOOccasionBundle::layout.html.twig" %}
 {% block title %}
-    {{ parent() }} 
-    débarras
+    {{ parent() }}
+    {{ ad.title }}
 {% endblock %}
 
 {% block header %}
@@ -25,23 +25,18 @@
 			<div class="product-desc">
 				<div class="col-md-7 product-view">
 					<h2>{{ ad.title }}</h2>
-					<!--p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p-->
 					<div class="flexslider">
 						<ul class="slides">
-							<li data-thumb="images/ss1.jpg">
-								<img src="images/ss1.jpg" />
-							</li>
-							<li data-thumb="images/ss2.jpg">
-								<img src="images/ss2.jpg" />
-							</li>
-							<li data-thumb="images/ss3.jpg">
-								<img src="images/ss3.jpg" />
-							</li>
+							{%if  ad.advertimage %}
+								<img src="{{ asset('uploads/images/' ~ ad.advertimage) }}" />
+							{%else%}
+                                                               <i class="fa fa-ban fa-3x fa-pull-left fa-border"
+                                                                aria-hidden="true"
+                                                               style="color:red;"></i> 
+                                                        {% endif %}
 						</ul>
 					</div>
 					<!-- FlexSlider -->
-					  <script defer src="js/jquery.flexslider.js"></script>
-					<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
 						<script>
 					// Can also be used with $(document).ready()
@@ -61,6 +56,15 @@
 					</div>
 				</div>
 				<div class="col-md-5 product-details-grid">
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        {% if  app.user.getId()==ad.id%}
+                                        <div class="zonebouton text-center">
+                                            <a href="{{ path('bo_occasion_delete', {'id': ad.id}) }}" class="fa fa-trash-o btn btn-danger"> Supprimer </a>
+                                            <span class="marge-lr"></span>
+                                            <a href="{{ path('bo_occasion_edit', {'id': ad.id}) }}" class="fa fa-edit btn btn-info"> Modifier </a>
+					</div>
+                                        {% endif %}
+                                    {% endif %}        
 					<div class="item-price">
 						<div class="product-price">
 							<p class="p-price">Prix</p>
@@ -79,8 +83,8 @@
 						</div>
 					</div>
 					<div class="interested text-center">
-						<h4>Intéresser par l'annonce?<small> Contacter l'annonceur!</small></h4>
-						<p><i class="glyphicon glyphicon-earphone"></i>{%if ad.showphone==1%} {{ad.customer.telcust}} {%else%} messagerie privée{%endif%}</p>
+                                                <h4>Intéresser par l'annonce?<small> <a href="href="bo_occasion_addmsg">Contacter l'annonceur!</a></small></h4>
+						<p><i class="glyphicon glyphicon-earphone"></i>{%if ad.showphone==1%} {{ad.user.tel}} {%else%} messagerie privée{%endif%}</p>
 					</div>
 						<div class="tips">
 						<h4>Conseils de sécurité pour les acheteurs.  Pour ne pas tomber dans le piège des fraudeurs</h4>

@@ -1,0 +1,4 @@
+services:
+#    bo_message.example:
+#        class: BO\MessageBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

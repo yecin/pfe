@@ -1,7 +1,7 @@
 {% extends "::layout.html.twig" %}
 {% block title %}
     {{ parent() }} 
-    Liste des débarras
+    Liste des {{ app.request.get('category') }}
 {% endblock %}
 
 {% block header %}
@@ -112,21 +112,26 @@
                                                             {% for ad in list_ad %}
 								<a href="show/{{ ad.id }}">
 									<li>
-									<img 
-                                                                                src="{#{ asset(ad.image.webPath) }#}"
-                                                                                alt="{#{ ad.image.alt }#}"
-                                                                                title="" alt="" />
-									<section class="list-left">
-									<h5 class="title">{{ ad.title }}</h5>
-									<span class="adprice">{{ ad.price }} DT</span>
-									<p class="catpath">{{ app.request.get('category') }} » {{ ad.brand }}</p>
-									</section>
-									<section class="list-right">
-									<span class="date">{%if "now"|date('d/m/Y')  == ad.datecreate|date('d/m/Y') %}Aujourdhui, {{ ad.datecreate|date("H:i") }}
-                                                                        {%else%} {{ ad.datecreate|date("d/m/Y  H:i") }} {% endif %} </span>
-									<span class="cityname">{{ ad.customer.governate.name }}</span>
-									</section>
-									<div class="clearfix"></div>
+                                                                            
+									   {%if  ad.advertimage %}
+                                                                                <img src="{{ asset('uploads/images/' ~ ad.advertimage) }}"/>
+                                                                           {%else%}
+                                                                               <i class="fa fa-ban fa-3x fa-pull-left fa-border"
+                                                                                aria-hidden="true"
+                                                                               style="color:red;"></i> 
+                                                                           {% endif %}
+                                                                            
+                                                                            <section class="list-left">
+                                                                            <h5 class="title">{{ ad.title }}</h5>
+                                                                            <span class="adprice">{{ ad.price }} DT</span>
+                                                                            <p class="catpath">{{ app.request.get('category') }} » {{ ad.brand }}</p>
+                                                                            </section>
+                                                                            <section class="list-right">
+                                                                            <span class="date">{%if "now"|date('d/m/Y')  == ad.datecreate|date('d/m/Y') %}Aujourdhui, {{ ad.datecreate|date("H:i") }}
+                                                                            {%else%} {{ ad.datecreate|date("d/m/Y  H:i") }} {% endif %} </span>
+                                                                            <span class="cityname">{{ ad.user.governate.name }}</span>
+                                                                            </section>
+                                                                            <div class="clearfix"></div>
 									</li> 
 								</a>
                                                         {% else %}

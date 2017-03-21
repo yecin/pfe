@@ -1,40 +1,109 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Supprimer 
+    {{ ad.title }}
+{% endblock %}
 
-<!DOCTYPE html>
+{% block header %}
+    
 
-<html>
-
-  <head>
-
-    <title>Bienvenue sur ma première page avec OpenClassrooms !</title>
-
-  </head>
-
-  <body>
-
-    <h1>Supprimer une annonce</h1>
+    
+{% endblock %}
 
 
-    <p>
-
-      {# On affiche tous les messages flash dont le nom est « info » #}
-
-      {% for message in app.session.flashbag.get('info') %}
-
-        <p>Message flash : {{ message }}</p>
-
-      {% endfor %}
-
-    </p>
+{% block bodyoccasion %}
 
 
-    <p>
+	<!--single-page-->
+        <div class="container">
+        <div class="but_list">
+        <div class="alert alert-danger" role="alert">
+        <strong>Oh!</strong> Etes-vous certain de vouloir supprimer l'annonce "{{ ad.title }}"
+        </div>
+        </div>
+        </div>
+    {# Ceci va générer le champ CSRF #}
+    <div class="single-page main-grid-border">
+		<div class="container">
 
-      Ici nous pourrons lire l'annonce ayant comme id : {{ id }}<br />
+                    
+                    
+                    
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>{{ ad.title }}</h2>
+					<!--p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p-->
+					<div class="flexslider">
+						<ul class="slides">
+							{%if  ad.advertimage %}
+								<img src="{{ asset('uploads/images/' ~ ad.advertimage) }}" />
+							{%else%}
+                                                                               <i class="fa fa-ban fa-3x fa-pull-left fa-border"
+                                                                                aria-hidden="true"
+                                                                               style="color:red;"></i> 
+                                                        {% endif %}
+						</ul>
+					</div>
+					<!-- FlexSlider -->
+					  <script defer src="js/jquery.flexslider.js"></script>
+					<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
-      Mais pour l'instant, nous ne savons pas encore le faire, cela viendra !
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<!-- //FlexSlider -->
+					<div class="product-details">
+						<h4>Marque : <a href="#">{{ ad.brand }}</a></h4>
+						<h4>Vues : <strong>{{ ad.nbview }}</strong></h4>
+						<p><strong>Déscription</strong> : {{ ad.content }}.</p>
+					
+					</div>
+				</div>
+				<div class="col-md-5 product-details-grid">
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <form action="{{ path('bo_occasion_delete', {'id': ad.id}) }}" method="post">
+                                        <div class="zonebouton text-center">
+                                            <input type="submit" class="fa fa-trash-o btn btn-danger" value="Supprimer l'annonce"  />
+                                            <span class="marge-lr"></span>
+                                            <a href="{{ path('bo_occasion_mylist', {'id': app.user.id}) }}" class="fa fa-chevron-left btn btn-success"> Retour à la liste </a>
+					</div>
+                                    </form>
+                                    {% endif %}
+                                    
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price">Prix</p>
+							<h3 class="rate"> {{ ad.price }} DT</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price">Etat</p>
+							<h4>{{ ad.state }}</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price">Type</p>
+							<h4> {{ad.category.name}}  </h4>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					
+						
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+    {#{ form_rest(form) }#}
+</form>
+	<!--//single-page-->
 
-    </p>
 
-  </body>
+{% endblock %}
 
-</html>

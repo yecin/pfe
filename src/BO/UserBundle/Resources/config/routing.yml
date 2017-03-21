@@ -1,0 +1,5 @@
+bo_user_compte:
+    path:      /compte/{id}
+    defaults:  { _controller: BOUserBundle:User:compte }
+    requirements:
+        id: \d+  

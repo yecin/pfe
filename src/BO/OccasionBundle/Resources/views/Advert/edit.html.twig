@@ -1,40 +1,92 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+      {{ parent() }} modifier  
+    {{ advert.title }}
+{% endblock %}
 
-<!DOCTYPE html>
+{% block header %}
+    
 
-<html>
-
-  <head>
-
-    <title>Bienvenue sur ma première page avec OpenClassrooms !</title>
-
-  </head>
-
-  <body>
-
-    <h1>Ajouter une annonce</h1>
+    
+{% endblock %}
 
 
-    <p>
+{% block bodyoccasion %}
+                                    {{dump(form)}}
+        <div class="container">
+                <div class="alert alert-warning" role="alert">
+                <strong>{{ app.user.username|upper }}</strong> Vous éditez une annonce déjà existante, merci de ne pas changer
+                    l'esprit générale de l'annonce déjà publiée.
+                </div>
+        </div>
 
-      {# On affiche tous les messages flash dont le nom est « info » #}
+      <div class="post-ad-form">
+        <form action="{{ path('bo_occasion_edit', { 'id': advert.id }) }}" method="post" {{ form_enctype(form) }}>  
+    <div class="container">
+        {#{ form_start(form) }#}
+            {{ form_errors(form) }}{{ form_widget(form._token) }}
+            {{ form_label(form.category, 'Catégorie') }}
+            {{ form_widget(form.category) }}
+            <div class="clearfix"></div>
+            {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'phone'}}) }}
+            {{ form_widget( form.title, { 'attr' : {'class' : 'phone'}} ) }}
+            <div class="clearfix"></div>
+            {{ form_label(form.content, 'Description', {'label_attr': {'class': 'phone'}}) }}
+            {{ form_widget( form.content, { 'attr' : {'class' : 'mess'}} ) }}
+            <div class="clearfix"></div>
+            {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'phone'}}) }}
+            {{ form_widget( form.price, { 'attr' : {'class' : 'phone'}} ) }}
+            <div class="clearfix"></div>
+            {{ form_label(form.brand, 'Marque', {'label_attr': {'class': 'name'}}) }}
+            {{ form_widget( form.brand, { 'attr' : {'class' : 'name', 'placeholder':'Marque(s)'}} ) }}
+            <div class="clearfix"></div>
+            {{ form_label(form.state, 'Etat', {'label_attr': {'class': 'name'}}) }}
+            {{ form_widget( form.state ) }}
+            <div class="clearfix"></div>
+            <label for="checkbox" class="col-sm-2 control-label">Publier l'annonce</label>             
+                {{ form_widget( form.published, { 'attr' : {'class' : 'checkbox-inline'}} ) }}
+            <div class="col-sm-4 jlkdfj1">
+                    <p class="help-block">Décocher pour sauvegarder</p>
+            </div>
+            <div class="clearfix"></div>
+            <!-- ----------------------->
+            <div class="upload-ad-photos">
+                    {{ form_label(form.advertimage, 'Ajouter une image', {'label_attr': {'class': ''} }) }}
+                    {{ form_widget(form.advertimage) }}
+            </div>
+            <!-- ----------------------->
+            <div class="form-group">
+                    <label for="checkbox" class="col-sm-2 control-label">Afficher numéro</label>
+                    <div class="col-sm-8">
+                            <div class="checkbox-inline">{{ form_widget( form.showphone ) }}</div>
+                    </div>
+            </div>
+            <!------------------------->
+            <div class="personal-details">
+                <div class="clearfix"></div>
+                <div class="header-right">{{ form_widget( form.submit, { 'attr' : {'value' : 'Publier'}} ) }}</div>
+            <div class="clearfix"></div>
+            </div>
+            <p>
+                <!--a href="{#{ path('bo_occasion_edit', {'id': advert.id}) }#}" class="btn btn-default">
+                <i class="glyphicon glyphicon-edit"></i>
+                Modifier l'annonce
+                </a-->
+                <a href="{{ path('bo_occasion_show', {'id': advert.id}) }}" class="btn btn-default">
+                  <i class="glyphicon glyphicon-chevron-left"></i>
+                  Retour à l'annonce
+                </a>
+            </p>
+            
+            {{ form_rest(form) }}
+            {#{ form_end(form) }#}
+            </div>
 
-      {% for message in app.session.flashbag.get('info') %}
+        </form>
+        </div>
 
-        <p>Message flash : {{ message }}</p>
-
-      {% endfor %}
-
-    </p>
+        
 
 
-    <p>
+{% endblock %}
 
-      Ici nous pourrons lire l'annonce ayant comme id : {{ id }}<br />
-
-      Mais pour l'instant, nous ne savons pas encore le faire, cela viendra !
-
-    </p>
-
-  </body>
-
-</html>

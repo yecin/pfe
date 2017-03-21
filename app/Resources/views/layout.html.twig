@@ -9,18 +9,19 @@
     </title>
     {% block biblio %}
                 {% block stylesheets %}
-                        {% stylesheets 
-                            filter='?cssrewrite, ?scssphp'
-                            'bundles/booccasion/css/*.css' %}
-                            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+                        {% stylesheets filter="cssrewrite"
+                        '@bootstrap_css'
+                        '@fonts_glyphicons_eot'
+                        '@fonts_glyphicons_svg'
+                        '@fonts_glyphicons_ttf'
+                        '@fonts_glyphicons_woff'
+                        'css/font-awesome.css'
+                        'bundles/booccasion/css/style.css'
+                        output='compiled/css/app.css'
+                        %}
+                        <link rel="stylesheet" href="{{ asset_url }}" />
                         {% endstylesheets %}
-                {% endblock %}   
-                <!--fonts-->
-                <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
-                <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-                <!--//fonts-->
+                {% endblock %}
                 <script type="text/javascript">
                     $(document).ready(function () {
                       var mySelect = $('#first-disabled2');
@@ -43,20 +44,54 @@
                 </script>
                 {% block headerlayout %}
                     <div class="header">
-                        <div class="container">
-                                    {#% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                        Connecté en tant que {{ app.user.username }}
-                                        -
-                                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-                                    {% else %}
-                                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-                                    {% endif %#}                                 
+                        <div class="container">                                 
                             <div class="logo">
                                 <a href="{{ path('bo_occasion_home') }}"><span>Bonne</span>Occasion</a>
                             </div>
                             <div class="header-right">
-                                <a class="account" href="{{ path('bo_occasion_login') }}">Mon Compte</a>
-
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <span class="coord">Connecté en tant que </span>
+                                    <span class="coord marge-lr">{{ app.user.username|upper }}</span>
+     
+                            <span  class="icon marge-lr">
+                                    <nav class="nav">
+                                        <ul class="nav-list">
+                                          <li class="nav-list-item">
+                                            <span class="fa fa-user-circle-o"></span>
+                                            <ul class="nav-sublist">
+                                              <li class="nav-sublist-item">
+                                                    <a href="{{ path('fos_user_profile_show') }}"class="nav-sublist-link">
+                                                    <i class="fa fa-sliders marge-lr" aria-hidden="true"></i>
+                                                    {{ app.user.username|upper }}
+                                                    </a>
+                                              </li>
+                                              <li class="nav-sublist-item">
+                                                    <a href="
+                                                       {{ path('fos_message_inbox') }}
+                                                       {#{ path('fos_message_inbox', app.user.id) }#}
+                                                       "class="nav-sublist-link">
+                                                    <i class="fa fa-envelope marge-lr" aria-hidden="true"></i>
+                                                    Mes messages</a>
+                                              </li>
+                                              <li class="nav-sublist-item">
+                                                    <a href="{#{url('bo_occasion_mylist', {'id' : 49})}#}
+                                                    {{ url('bo_occasion_mylist', {"id" : app.user.id}) }}" class="nav-sublist-link">
+                                                    <i class="fa fa-newspaper-o marge-lr" aria-hidden="true"></i>
+                                                    Mes annonces</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                      </nav>  
+                            </span>                                
+                                    <a class="account" href=" {{ path('logout') }}">Déconnexion</a>
+                                     {% else %}
+                                        {% if not((app.request.attributes.get('_route')=='fos_user_security_login') or (app.request.attributes.get('_route')=='fos_user_registration_register')) %}
+                                            <a class="account" href=" {{ path('fos_user_security_login') }}">Connexion</a>
+                                            <a class="account marge-lr" href="{{ path('fos_user_registration_register') }}">Créer un Compte</a>
+                                        {% endif %}
+                                {% endif %}
+                                   
                             </div>
                         </div>
                     </div>    
@@ -72,21 +107,21 @@
                 {% endblock %}    
             
     {% endblock %}    
+
 </head>
 <body>
-    {% block bodyone %}    
-        
+    <div class="page">
+    <div class="site-header">    
         {% block body %}    
 
         {% endblock %}
-    {% endblock %}    
-    
-    {% block footerone %}    
-    <footer>
+    </div>
+    <div class="site-content"></div>
+    <div class="site-footer">
         {% block footer %}    
 
         {% endblock %}
-        <div class="footer-bottom text-center">
+        <div class="footer-bottom text-center ">
             {% block icon %}    
 
             {% endblock %}
@@ -98,10 +133,7 @@
                 <div class="clearfix"></div>
             </div>
         </div>    
-    </footer>        
-
-        
-    {% endblock %}
-    
+    </div> 
+    </div>
 </body>
 </html>

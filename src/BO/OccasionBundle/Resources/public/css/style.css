@@ -266,6 +266,13 @@ span.active.uls-trigger {
   margin-top: 26px;
 }
 
+span.coord {
+  float: left;
+  font-size: 14px;
+  color: #6D6D6D;
+  margin-top: 26px;
+}
+
 .selectregion {
   float: left;
 }
@@ -421,6 +428,10 @@ span.active.uls-trigger {
   background: #ff7607;
 }
 
+.focus-image i.fa-bed {
+  background: #fdde02;
+}
+
 .focus-image i.fa-clock-o {
   background: #7e3b07;
 }
@@ -454,7 +465,7 @@ span.active.uls-trigger {
 }
 
 .focus-image i.fa-child {
-  background: #e51c23;
+  background: #eea236;
 }
 
 .focus-image i.fa-cutlery {
@@ -1315,7 +1326,7 @@ ul.location li:nth-child(2) {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 42%;
+  width: 39%;
   height: 1px;
   background: #545556;
 }
@@ -1325,7 +1336,7 @@ ul.location li:nth-child(2) {
   position: absolute;
   top: 50%;
   right: 0;
-  width: 42%;
+  width: 39%;
   height: 1px;
   background: #545556;
 }
@@ -5712,3 +5723,176 @@ label {
 .footer404 a{
 	color:yellow;
 }
+
+.marge-lr {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+.fa-user-circle-o {
+color: #01a185;
+font-size: 2em;
+margin-left: 1em;
+margin-right: 1em;
+/*background-color: #01a185;*/ 
+float: left;
+margin-top: 21px;
+}
+
+.fa-user-circle-o:hover {
+  color: #f3c500;
+}
+/*********************bouton barre accueil *******************/
+.zonebouton {
+  margin: 2px;
+  padding: 6px 20px;
+  background: #FFFFFF;
+  margin-left: 15%;
+  margin-right: 0;
+  border:1px;
+  border-style : solid;
+  border-color : #f3c500;
+}
+/*********************fin bouton barre accueil *******************/
+/*************************footer en bas*******************/
+
+html, body {
+	height: 100%;
+        margin:0;
+        padding: 0;
+}
+.wrapper {
+	min-height: 100%;
+        height: auto !important;
+        height: 100%;
+	margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+  height: 60px;
+  clear: both; /* '.push' must be the same height as 'footer' */
+}
+
+footer {
+
+}
+
+
+/***********************fin footer enbas*****************/
+/****************image****************/
+
+/********fin image************************/
+/*******************couleur tableau************************/
+tr:nth-child(odd) {
+    background: #f3c500;
+}
+
+tr:nth-child(even) {
+    background: #ddfff9;
+}
+td.caseL{
+    text-align: left;
+}
+td.caseC{
+    text-align: center;
+}
+th.caseC{
+    text-align: center;
+}
+
+/***************css menu déroulant**********************/
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list-item {
+  margin: 0 5px;
+  padding: 0 0 8px;
+  display: inline-block;
+  position: relative;
+}
+
+/* main level link */
+.nav-list-link {
+  color: #f3c500;
+  text-decoration: none;
+  display: block;
+  padding:  8px 20px;
+  border-radius: 1em;
+}
+
+/* dropdown */
+.nav-list-item:hover > ul {
+  display: block;
+}
+
+/* level 2 list */
+.nav-sublist {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  width: 185px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background: #fafafa url(../images/gradient.png) repeat-x 0 0;
+  border: solid 1px #b4b4b4;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+
+.nav-sublist-link {
+  display: block;
+  font-weight: normal;
+  text-shadow: 0 1px 0 #fff;
+  text-decoration: none;
+  color: #666;
+  padding:  8px 20px;
+}
+
+/* level 3+ list */
+.nav-sublist > ul {
+  left: 181px;
+  top: -3px;
+}
+
+/* rounded corners of first and last link */
+.nav-sublist-item:first-child > a {
+  border-radius: 9px 9px 0 0;
+}
+.nav-sublist-item:last-child > a {
+  border-radius: 0 0 9px 9px;
+}
+
+/* main level link hover */
+/* sub levels link hover */
+.nav-list-link:hover,
+.nav-sublist-link:hover {
+  background: none;
+  border: none;
+  color: #666;
+  box-shadow: none;
+}
+
+.nav-sublist-link:hover {
+  background: #01a185 url(../images/gradient.png) repeat-x 0 -100px;
+  color: #fff;
+  border-radius: 0;
+  text-shadow: 0 1px 1px rgba(0,0,0, .1);
+}
+  span.icon {
+  float: left;
+  font-size: 14px;
+  margin-top: 0px;
+  display: inline-block;
+}
+/***************fin menu*******************************/
+
+.center-div
+{
+  margin: 0 auto;
+  width: 100px;
+}
+.txt-black{color:red;}

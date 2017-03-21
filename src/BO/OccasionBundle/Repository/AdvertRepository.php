@@ -26,6 +26,15 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         ->getQuery()
         ->getResult()  ;
     }
+ 
+    public function getForAdvert()
+    {
+        $qb = $this->createQueryBuilder('ad');
+        $qb->orderBy('ad.datecreate', 'DESC');
+        $qb->setMaxResults(4);
+        return $qb->getQuery()
+                   ->getResult();
+    }
     
     public function myAdvert($id)
     {
@@ -47,7 +56,7 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this
           ->createQueryBuilder('a')
-          ->leftJoin('a.customer', 'c')
+          ->leftJoin('a.user', 'c')
           ->addSelect('c')
           ->where('c.id=:id') 
           ->setParameter('id', $id)
@@ -85,9 +94,9 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
          break;             
         }
         return  $this->createQueryBuilder('a')
-        ->leftjoin('a.customer', 'cus')
+        ->leftjoin('a.user', 'us')
         ->leftJoin('a.category', 'cat')       
-        ->addSelect('cus')
+        ->addSelect('us')
         ->addSelect('cat')
         ->where('a.category = :category')
         ->setParameter('category', $category)
@@ -98,9 +107,9 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
     public function oneAdvert($id)
     {
         return  $this->createQueryBuilder('a')
-        ->leftjoin('a.customer', 'cus')
+        ->leftjoin('a.user', 'us')
         ->leftJoin('a.category', 'cat')       
-        ->addSelect('cus')
+        ->addSelect('us')
         ->addSelect('cat')
         ->where('a.id = :id')
         ->setParameter('id', $id)
@@ -118,5 +127,34 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function getMylistAdvert($id)
+
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->where('a.user = :user')
+            ->setParameter('user', $id)
+            ->orderBy('a.datecreate', 'DESC')
+        ;
+        return $qb
+        ->getQuery()
+        ->getResult()
+          ;
+        /*
+         * code pour pagination
+        $query = $this->createQueryBuilder('a');
+        $query->where('a.customer = :customer')
+            ->setParameter('customer', $id)
+            ->orderBy('a.datecreate', 'DESC')
+            ->getQuery()
+        ;
+        $query
+                ->setFirstResult(($page-1) * $nbPerPage)
+                ->setMaxResults($nbPerPage)
+        ;
+        return new Paginator($query, true);
+         */
+    }
+
     
 }

@@ -15,12 +15,20 @@
                 <a href="{{ path('bo_occasion_add') }}">Publier gratuitement une annonce</a>
             </div>
         </div>
-    
+
 {% endblock %}
 
 
 {% block body %}
-
+    <div class="container">
+        <div class="clearfix"></div>
+            <p>
+                {# On affiche tous les messages flash dont le nom est « info » #}
+                {% for message in app.session.flashbag.get('notice') %}
+                  <p>Message flash : {{ message }}</p>
+                {% endfor %}
+            </p>    
+    </div>
     {% block bodyoccasion %}
         
     {% endblock %}    

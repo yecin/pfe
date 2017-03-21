@@ -1,0 +1,47 @@
+{% extends "BOOccasionBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} 
+    Application Mobile
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+
+    
+{% endblock %}
+
+
+{% block bodyoccasion %}
+
+
+	<!-- Feedback -->
+	<div class="feedback main-grid-border">
+		<div class="container">
+			<h2 class="head">Votre avis</h2>
+			<div class="feed-back">
+				<h3>Dites-nous ce que vous pensez du BonneOccasion!</h3>
+				<p>Existe-t-il quelque chose à propos de notre site web que vous aimez particulièrement ? Quelque chose que vous aimeriez au contraire voir changer ?
+
+Vos commentaires nous aideront à améliorer votre expérience sur notre site Web.
+
+Si vous signalez un problème technique, merci d'en fournir une description précise.
+                                </p>
+				<div class="feed-back-form">
+					<form>
+					<span>Informations personnel</span>
+							<input type="text" value="Votre prénom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Prénom';}">
+							<input type="text" value="Votre nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom';}">
+							<input type="text" value="nom@courrierélectronique.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Adresse courriel';}">
+							<!--input type="text" value="Numéro téléphone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Numéro téléphone';}"-->
+							<span>Avez-vous quelque chose à nous dire?</span>
+							<textarea type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+							<input type="submit" value="Envoyer">
+						</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<!-- // Feedback -->
+    
+
+{% endblock %}

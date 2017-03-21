@@ -1,0 +1,106 @@
+    {% extends "::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} 
+    Ajouter une annonce
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="alert alert-info" role="alert">
+        <strong>{{ app.user.username|upper }}</strong> Vous allez ajouter une nouvelle annonce.
+        </div>
+    {% endif %}{{dump(form)}}
+</div>
+
+   
+<!-- Submit Ad -->
+<div class="submit-ad main-grid-border">
+        <div class="container">
+                <h2 class="head">Je publie une annonce - objet d'occasion</h2>
+                <div class="post-ad-form">
+                        {{ form_start(form) }}
+                                {{ form_errors(form) }}
+                                {{ form_label(form.category, 'Catégorie') }}
+                                {{ form_widget(form.category) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.title, { 'attr' : {'class' : 'phone'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.content, 'Description', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.content, { 'attr' : {'class' : 'mess'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'phone'}}) }}
+                                {{ form_widget( form.price, { 'attr' : {'class' : 'phone'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.brand, 'Marque', {'label_attr': {'class': 'name'}}) }}
+                                {{ form_widget( form.brand, { 'attr' : {'class' : 'name', 'placeholder':'Marque(s)'}} ) }}
+                                <div class="clearfix"></div>
+                                {{ form_label(form.state, 'Etat', {'label_attr': {'class': 'name'}}) }}
+                                {{ form_widget( form.state ) }}
+                                <div class="clearfix"></div>
+                                    <label for="checkbox" class="col-sm-2 control-label">Publier l'annonce</label>
+                                   
+                                        {{ form_widget( form.published, { 'attr' : {'class' : 'checkbox-inline'}} ) }}
+                                    
+                                    <div class="col-sm-4 jlkdfj1">
+                                            <p class="help-block">Décocher pour sauvegarder</p>
+                                    </div>
+                                <div class="clearfix"></div>
+                                
+                        <div class="upload-ad-photos">
+                                {{ form_label(form.advertimage, 'Ajouter une image', {'label_attr': {'class': ''} }) }}
+                                {{ form_widget(form.advertimage) }}
+                        </div>
+                                    <div class="personal-details">
+                        {% if not is_granted ('IS_AUTHENTICATED_REMEMBERED') %}            
+                                    {{ form_label(form.user.username, 'Nom', {'label_attr': {'class': 'phone'}}) }}
+                                    {{ form_widget( form.user.username, { 'attr' : {'class' : 'name'}} ) }}
+                                    <div class="clearfix"></div>
+                                    {{ form_label(form.user.password, 'Mot de passe', {'label_attr': {'class': 'name'}}) }}
+                                    {{ form_widget( form.user.password, { 'attr' : {'class' : 'form-control1'}} ) }}
+                                    <div class="clearfix"></div>
+                                    {{ form_label(form.user.email, 'E-mail') }}
+                                    {{ form_widget( form.user.email, { 'attr' : {'class' : 'email'}} ) }}
+                                    <div class="clearfix"></div>
+                                    {{ form_label(form.user.governate, 'Region') }}
+                                    {{ form_widget(form.user.governate) }}
+                                    <div class="clearfix"></div>
+                                    {{ form_label(form.user.tel, 'Téléphone') }}
+                                    {{ form_widget( form.user.tel, { 'attr' : {'class' : 'phone'}} ) }}
+                                    <div class="clearfix"></div>
+                        {%endif%}            
+                                    <!------------------------->
+                                {% if not (app.user.tel is empty) %}  
+                                    <div class="form-group">
+                                            <label for="checkbox" class="col-sm-2 control-label">Afficher numéro</label>
+                                            <div class="col-sm-8">
+                                                    <div class="checkbox-inline">{{ form_widget( form.showphone ) }}</div>
+                                            </div>
+                                    </div>
+                                {% endif %}    
+                                    <!------------------------->
+                                    <div class="clearfix"></div>
+                                    
+                                        <p class="post-terms">En cliquant sur  <strong> "Publier mon annonce"</strong>  j'accepte la <a  href="{{ path('bo_occasion_terms') }}">charte</a> du bon annonceur.</p>
+                                        <div class="header-right">{{ form_widget( form.submit, { 'attr' : {'value' : 'Publier mon annonce'}} ) }}</div>
+                                        <!--input type="submit" value="Publier mon annonce"-->
+                                <div class="clearfix"></div>
+                              {#{ form_widget( form.user_id, {value :'50' } ) }#}
+                              {#{ form_widget( form.user_id, {value : 'app.user'} ) }#}
+                              
+                                
+                                
+                                {{ form_rest(form) }}
+                                {{ form_end(form) }}
+                                </div>
+                </div>
+        </div>	
+</div>
+<!-- // Submit Ad -->   
+{% endblock %}
+{% block footer %}    
+        
+
+{% endblock %}
